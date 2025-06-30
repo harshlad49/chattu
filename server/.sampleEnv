@@ -1,0 +1,16 @@
+
+
+MONGO_URI = mongodb://localhost:27017
+
+JWT_SECRET=djgjkdshbgjkhfnjksdfhbnsjkdfsdhjfk
+
+ADMIN_SECRET_KEY= sample admin kjey
+
+NODE_ENV = DEVELOPMENT
+
+CLIENT_URL =C:\Users\harsh\OneDrive\Desktop\MERN App\chatapp\frontend
+
+
+CLOUDINARY_CLOUD_NAME=dfmemogl9
+CLOUDINARY_API_KEY =719316488431961
+CLOUDINARY_API_SECRET =fNbrTBF39suISSRHdlqrNnm2r6g
