@@ -15,9 +15,9 @@ import {
 import { getOtherMember } from "../lib/helper.js";
 import { User } from "../models/user.js";
 import { Message } from "../models/message.js";
-import cors from "../Corse.js";
+
 const newGroupChat = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+ 
   const { name, members } = req.body;
 
   const allMembers = [...members, req.user];
@@ -39,7 +39,7 @@ const newGroupChat = TryCatch(async (req, res, next) => {
 });
 
 const getMyChats = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+  
   const chats = await Chat.find({ members: req.user }).populate(
     "members",
     "name avatar"
@@ -71,7 +71,7 @@ const getMyChats = TryCatch(async (req, res, next) => {
 });
 
 const getMyGroups = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   const chats = await Chat.find({
     members: req.user,
     groupChat: true,
@@ -92,7 +92,7 @@ const getMyGroups = TryCatch(async (req, res, next) => {
 });
 
 const addMembers = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   const { chatId, members } = req.body;
 
   const chat = await Chat.findById(chatId);
@@ -138,7 +138,7 @@ const addMembers = TryCatch(async (req, res, next) => {
 });
 
 const removeMember = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   const { userId, chatId } = req.body;
 
   const [chat, userThatWillBeRemoved] = await Promise.all([
@@ -179,7 +179,7 @@ const removeMember = TryCatch(async (req, res, next) => {
 });
 
 const leaveGroup = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+    
   const chatId = req.params.id;
 
   const chat = await Chat.findById(chatId);
@@ -221,7 +221,7 @@ const leaveGroup = TryCatch(async (req, res, next) => {
 });
 
 const sendAttachments = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   const { chatId } = req.body;
 
   const files = req.files || [];
@@ -276,7 +276,7 @@ const sendAttachments = TryCatch(async (req, res, next) => {
 });
 
 const getChatDetails = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   if (req.query.populate === "true") {
     const chat = await Chat.findById(req.params.id)
       .populate("members", "name avatar")
@@ -306,7 +306,7 @@ const getChatDetails = TryCatch(async (req, res, next) => {
 });
 
 const renameGroup = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+    
   const chatId = req.params.id;
   const { name } = req.body;
 
@@ -335,7 +335,6 @@ const renameGroup = TryCatch(async (req, res, next) => {
 });
 
 const deleteChat = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
   const chatId = req.params.id;
 
   const chat = await Chat.findById(chatId);
@@ -383,7 +382,7 @@ const deleteChat = TryCatch(async (req, res, next) => {
 });
 
 const getMessages = TryCatch(async (req, res, next) => {
-    await cors(req, res, () => {}); 
+   
   const chatId = req.params.id;
   const { page = 1 } = req.query;
 
