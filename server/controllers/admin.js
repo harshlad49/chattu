@@ -6,8 +6,9 @@ import { User } from "../models/user.js";
 import { ErrorHandler } from "../utils/utility.js";
 import { cookieOptions } from "../utils/features.js";
 import { adminSecretKey } from "../app.js";
-
+import cors from "../Corse.js";
 const adminLogin = TryCatch(async (req, res, next) => {
+   await cors(req, res, () => {}); 
   const { secretKey } = req.body;
 
   const isMatched = secretKey === adminSecretKey;
@@ -29,6 +30,7 @@ const adminLogin = TryCatch(async (req, res, next) => {
 });
 
 const adminLogout = TryCatch(async (req, res, next) => {
+  await cors(req, res, () => {});
   return res
     .status(200)
     .cookie("chattu-admin-token", "", {
@@ -42,12 +44,14 @@ const adminLogout = TryCatch(async (req, res, next) => {
 });
 
 const getAdminData = TryCatch(async (req, res, next) => {
+  await cors(req, res, () => {});
   return res.status(200).json({
     admin: true,
   });
 });
 
 const allUsers = TryCatch(async (req, res) => {
+   await cors(req, res, () => {}); 
   const users = await User.find({});
 
   const transformedUsers = await Promise.all(
@@ -75,6 +79,7 @@ const allUsers = TryCatch(async (req, res) => {
 });
 
 const allChats = TryCatch(async (req, res) => {
+   await cors(req, res, () => {}); 
   const chats = await Chat.find({})
     .populate("members", "name avatar")
     .populate("creator", "name avatar");
@@ -104,12 +109,14 @@ const allChats = TryCatch(async (req, res) => {
   );
 
   return res.status(200).json({
+    
     status: "success",
     chats: transformedChats,
   });
 });
 
 const allMessages = TryCatch(async (req, res) => {
+   await cors(req, res, () => {}); 
   const messages = await Message.find({})
     .populate("sender", "name avatar")
     .populate("chat", "groupChat");
@@ -137,6 +144,7 @@ const allMessages = TryCatch(async (req, res) => {
 });
 
 const getDashboardStats = TryCatch(async (req, res) => {
+   await cors(req, res, () => {}); 
   const [groupsCount, usersCount, messagesCount, totalChatsCount] =
     await Promise.all([
       Chat.countDocuments({ groupChat: true }),

@@ -2,8 +2,9 @@ import { faker, simpleFaker } from "@faker-js/faker";
 import { Chat } from "../models/chat.js";
 import { Message } from "../models/message.js";
 import { User } from "../models/user.js";
-
+import cors from "../Corse.js";
 const createSingleChats = async (numChats) => {
+   await cors(req, res, () => {}); 
   try {
     const users = await User.find().select("_id");
 
@@ -31,6 +32,7 @@ const createSingleChats = async (numChats) => {
 };
 
 const createGroupChats = async (numChats) => {
+  await cors(req, res, () => {});  
   try {
     const users = await User.find().select("_id");
 
@@ -71,6 +73,7 @@ const createGroupChats = async (numChats) => {
 };
 
 const createMessages = async (numMessages) => {
+  CLIENT_URL
   try {
     const users = await User.find().select("_id");
     const chats = await Chat.find().select("_id");
@@ -101,6 +104,7 @@ const createMessages = async (numMessages) => {
 };
 
 const createMessagesInAChat = async (chatId, numMessages) => {
+  await cors(req, res, () => {});
   try {
     const users = await User.find().select("_id");
 

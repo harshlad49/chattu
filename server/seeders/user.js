@@ -1,7 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { User } from "../models/user.js";
-
+import cors from "../Corse.js";
 const createUser = async (numUsers) => {
+   await cors(req, res, () => {}); 
   try {
     const usersPromise = [];
 
